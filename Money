@@ -5,21 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Program;
-class Money
+internal class Money
 {
     private int dollars;
     private int cents;
 
-
     public Money(int dollars, int cents)
-
     {
         this.dollars = dollars;
         this.cents = cents;
     }
-
-    public int Cents { get; internal set; }
-    public object Dollars { get; internal set; }
 
     public void DisplayAmount()
     {
@@ -69,11 +64,6 @@ class Product
         return moneyCents(money) + dollarsToCents(money.Dollars);
     }
 
-    private int dollarsToCents(object dollars)
-    {
-        throw new NotImplementedException();
-    }
-
     private int moneyCents(Money money)
     {
         return money.Cents;
@@ -85,7 +75,7 @@ class Product
     }
 }
 
-internal class Proga
+class Program
 {
     static void Main(string[] args)
     {
