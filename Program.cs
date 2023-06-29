@@ -1,101 +1,138 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Program;
-class Money
+namespace inheritance
 {
-    private int dollars;
-    private int cents;
-
-
-    public Money(int dollars, int cents)
-
+    internal class MusicalInstrument
     {
-        this.dollars = dollars;
-        this.cents = cents;
-    }
+        protected string name;
+        protected string characteristics;
 
-    public int Cents { get; internal set; }
-    public object Dollars { get; internal set; }
-
-    public void DisplayAmount()
-    {
-        Console.WriteLine($"Amount: {dollars}.{cents:00}");
-    }
-
-    public void SetAmount(int dollars, int cents)
-    {
-        this.dollars = dollars;
-        this.cents = cents;
-    }
-}
-
-class Product
-{
-    private string name;
-    private Money price;
-
-    public Product(string name, Money price)
-    {
-        this.name = name;
-        this.price = price;
-    }
-
-    public void DisplayPrice()
-    {
-        Console.WriteLine($"Price of {name}: ");
-        price.DisplayAmount();
-    }
-
-    public void DecreasePrice(int dollars, int cents)
-    {
-        int totalCents = priceCents(price) - dollars * 100 - cents;
-        if (totalCents < 0)
+        public MusicalInstrument(string name, string characteristics)
         {
-            Console.WriteLine("New price cannot be negative.");
-            return;
+            this.name = name;
+            this.characteristics = characteristics;
         }
 
-        int newDollars = totalCents / 100;
-        int newCents = totalCents % 100;
-        price.SetAmount(newDollars, newCents);
+        public virtual void Sound()
+        {
+            Console.WriteLine("Musical instrument sound");
+        }
+
+        public void Show()
+        {
+            Console.WriteLine($"Musical instrument name: {name}");
+        }
+
+        public void Desc()
+        {
+            Console.WriteLine($"Musical instrument description: {characteristics}");
+        }
+
+        public virtual void History()
+        {
+            Console.WriteLine("Musical instrument history");
+        }
     }
 
-    private int priceCents(Money money)
+    class Violin : MusicalInstrument
     {
-        return moneyCents(money) + dollarsToCents(money.Dollars);
+        public Violin(string name, string characteristics) : base(name, characteristics)
+        {
+        }
+
+        public override void Sound()
+        {
+            Console.WriteLine("Violin sound: Screeeech");
+        }
+
+        public override void History()
+        {
+            Console.WriteLine("Violin history: Originated in the 16th century");
+        }
     }
 
-    private int dollarsToCents(object dollars)
+    class Trombone : MusicalInstrument
     {
-        throw new NotImplementedException();
+        public Trombone(string name, string characteristics) : base(name, characteristics)
+        {
+        }
+
+        public override void Sound()
+        {
+            Console.WriteLine("Trombone sound: Wah wah");
+        }
+
+        public override void History()
+        {
+            Console.WriteLine("Trombone history: Developed in the 15th century");
+        }
     }
 
-    private int moneyCents(Money money)
+    class Ukulele : MusicalInstrument
     {
-        return money.Cents;
+        public Ukulele(string name, string characteristics) : base(name, characteristics)
+        {
+        }
+
+        public override void Sound()
+        {
+            Console.WriteLine("Ukulele sound: Plink plink");
+        }
+
+        public override void History()
+        {
+            Console.WriteLine("Ukulele history: Originated in Hawaii in the 19th century");
+        }
     }
 
-    private int dollarsToCents(int dollars)
+    class Cello : MusicalInstrument
     {
-        return dollars * 100;
+        public Cello(string name, string characteristics) : base(name, characteristics)
+        {
+        }
+
+        public override void Sound()
+        {
+            Console.WriteLine("Cello sound: Deep and rich tones");
+        }
+
+        public override void History()
+        {
+            Console.WriteLine("Cello history: Originated in the 16th century");
+        }
     }
-}
 
-internal class Proga
-{
-    static void Main(string[] args)
+    class Programas
     {
-        Money money = new Money(10, 50);
-        money.DisplayAmount();
+        static void Main(string[] args)
+        {
+            Violin violin = new Violin("Violin", "Four strings, played with a bow");
+            violin.Show();
+            violin.Desc();
+            violin.Sound();
+            violin.History();
 
-        Product product = new Product("Example Product", money);
-        product.DisplayPrice();
+            Trombone trombone = new Trombone("Trombone", "Brass instrument, played by sliding the slide");
+            trombone.Show();
+            trombone.Desc();
+            trombone.Sound();
+            trombone.History();
 
-        product.DecreasePrice(2, 30);
-        product.DisplayPrice();
+            Ukulele ukulele = new Ukulele("Ukulele", "Small guitar-like instrument with four strings");
+            ukulele.Show();
+            ukulele.Desc();
+            ukulele.Sound();
+            ukulele.History();
+
+            Cello cello = new Cello("Cello", "Large string instrument played with a bow");
+            cello.Show();
+            cello.Desc();
+            cello.Sound();
+            cello.History();
+        }
     }
 }
